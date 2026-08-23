@@ -1,0 +1,15 @@
+{
+	"name": "pi-toolkit",
+	"private": true,
+	"version": "0.1.0",
+	"type": "module",
+	"pi": {
+		"extensions": [
+			"./todo.ts",
+			"./ask.ts",
+			"./changelog.ts",
+			"./smart-edit.ts",
+			"./resources.ts"
+		]
+	}
+}
