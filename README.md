@@ -1,34 +1,45 @@
-# pi-toolkit
+# Super-Pi
 
-A bundle of pi extensions + a skill + the `osu-pink` theme, loaded as a
-single package. No npm dependencies — nothing to `npm install`.
+My pi agent setup: a bundle of extensions + a skill + the `osu-pink` theme,
+plus the agent config itself (`AGENTS.md`, models, settings). No npm
+dependencies — nothing to `npm install`.
 
-## Install
-
-Drop this whole folder into one of pi's extension directories, keeping the
-name `pi-toolkit` (or anything else — the folder name doesn't matter, only
-that `package.json` is directly inside it):
+## Layout
 
 ```
-~/.pi/agent/extensions/pi-toolkit/     # all projects
-.pi/extensions/pi-toolkit/             # this project only
+agent/AGENTS.md          # system instructions for the agent (tools, conventions)
+agent/settings.json      # pi settings
+agent/models.json        # model/provider overrides
+extensions/*.ts          # drop-in pi extensions (see below)
+skills/wiki/SKILL.md     # wiki-keeping skill
+themes/osu-pink.json     # theme
 ```
 
-pi discovers `package.json`'s `"pi.extensions"` field automatically (one
-directory level deep) — no other config needed. Run `/reload` in an open pi
-session to pick it up without restarting.
+Extensions live in `~/.pi/extensions/` (all projects) or
+`.pi/extensions/` (per project); run `/reload` in an open pi session to pick
+up changes without restarting.
 
 ## What's in it
 
-### `todo_write` tool + task commands (`extensions/todo.ts`)
+### Task planning tools + commands (`extensions/todo.ts`)
 
-The model's task-planning checklist, extended with:
+The model's task-planning checklist, split into three tools with a strict
+write → edit → done workflow:
 
-- **`failed` status** — a fourth state alongside pending/in_progress/completed,
-  shown in red with a `✗`, so a task the model couldn't finish is visibly
-  distinct from one it just hasn't started.
+- **`todo_write`** — create the session checklist once, up front (full list;
+  replaces, never appends).
+- **`todo_edit`** — change one task's status by its 1-indexed number
+  (`pending` / `in_progress` / `completed` / `failed`). Marking a new task
+  `in_progress` demotes the previous one back to pending.
+- **`todo_done`** — shorthand to mark a task completed by number; called
+  immediately after finishing it.
+
+Plus:
+
+- **`failed` status** — shown in red with a `✗`, so a task the model couldn't
+  finish is visibly distinct from one it just hasn't started.
 - **`goal`** — an optional one-line objective for the session, settable by
-  the model (via `todo_write`) or you (via `/goal`), shown above the task bar.
+  the model or you (via `/goal`), shown above the task bar.
 - **`/edit`** — opens a free-text editor pre-filled with the current goal and
   checklist (`[ ]`/`[~]`/`[x]`/`[!]`). Edit freely — add, remove, reorder,
   reword, re-status — and save.
