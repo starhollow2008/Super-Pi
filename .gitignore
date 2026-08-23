@@ -1,0 +1,12 @@
+/*
+!/.gitignore
+!/agent/
+!/extensions/
+!/skills/
+!/themes/
+
+agent/auth.json
+agent/sessions/
+agent/trust.json
+agent/npm/
+agent/*.log

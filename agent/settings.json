@@ -1,0 +1,14 @@
+{
+  "lastChangelogVersion": "0.84.2",
+  "theme": "osu-pink",
+  "enableInstallTelemetry": false,
+  "defaultProvider": "openrouter",
+  "defaultModel": "stealth/ox-alpha",
+  "defaultThinkingLevel": "medium",
+  "packages": [
+    "npm:pi-web-access"
+  ],
+  "hideThinkingBlock": false,
+  "showCacheMissNotices": false,
+  "tuiMode": "regular"
+}

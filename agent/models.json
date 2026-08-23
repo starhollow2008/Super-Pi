@@ -1,0 +1,44 @@
+{
+  "providers": {
+    "forge-ai": {
+      "name": "Forge AI",
+      "baseUrl": "https://forge-gateway-api.fly.dev/v1",
+      "api": "openai-completions",
+      "apiKey": "fg-767a96fa8c37494cbe7c8ca44536cdd2",
+      "models": [
+        {"id":"gpt-5.6-luna","reasoning":true,"input":["text","image"]},
+        {"id":"gpt-5.6-sol","reasoning":true,"input":["text","image"]},
+        {"id":"gpt-5.6-terra","reasoning":true,"input":["text","image"]},
+        {"id":"gpt-5.5","reasoning":true,"input":["text","image"]},
+        {"id":"gpt-5.3-codex","reasoning":true,"input":["text","image"]},
+        {"id":"claude-opus-4-5-20251101","reasoning":true,"input":["text","image"]},
+        {"id":"claude-sonnet-4-5-20250929","reasoning":true,"input":["text","image"]},
+        {"id":"claude-haiku-4-5-20251001","reasoning":true,"input":["text","image"]},
+        {"id":"grok-4.5","reasoning":true},
+        {"id":"grok-4.3","reasoning":true},
+        {"id":"grok-build-0.1","reasoning":false},
+        {"id":"claude-sonnet-4-6","reasoning":true,"input":["text","image"]},
+        {"id":"claude-sonnet-4-6-thinking","reasoning":true,"input":["text","image"]},
+        {"id":"claude-sonnet-5","reasoning":true,"input":["text","image"]},
+        {"id":"deepseek-v4-flash","reasoning":true},
+        {"id":"deepseek-v4-pro","reasoning":true},
+        {"id":"deepseek-v3.2","reasoning":true},
+        {"id":"deepseek-v3.1","reasoning":true},
+        {"id":"deepseek-r1","reasoning":true},
+        {"id":"deepseek-v3","reasoning":false},
+        {"id":"kimi-k3","reasoning":true},
+        {"id":"kimi-k2.7-code","reasoning":true},
+        {"id":"kimi-k2.6","reasoning":true},
+        {"id":"kimi-k2.5","reasoning":true},
+        {"id":"gemini-3-pro-preview","reasoning":true,"input":["text","image"]},
+        {"id":"gemini-3.5-flash","reasoning":true,"input":["text","image"]},
+        {"id":"tencent/hy3","reasoning":true},
+        {"id":"mimo-v2.5","reasoning":true},
+        {"id":"mimo-v2.5-pro","reasoning":true},
+        {"id":"MiniMax-M3","reasoning":true},
+        {"id":"MiniMax-M2.5","reasoning":true},
+        {"id":"glm-5.2","reasoning":true}
+      ]
+    }
+  }
+}
