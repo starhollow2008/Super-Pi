@@ -14,6 +14,7 @@ export default function (pi: ExtensionAPI) {
 	let turnCount = 0;
 	let sessionStart = Date.now();
 	let footerEnabled = true;
+	let footerInstalled = false;
 
 	const fmtTokens = (n: number) => (n < 1000 ? `${n}` : `${(n / 1000).toFixed(1)}k`);
 
@@ -40,14 +41,17 @@ export default function (pi: ExtensionAPI) {
 	}
 
 	function installFooter(ctx: any) {
+		footerInstalled = true;
 		ctx.ui.setFooter((tui: any, theme: any, footerData: any) => {
 			const unsub = footerData.onBranchChange(() => tui.requestRender());
 			return {
 				dispose: unsub,
 				invalidate() {},
 				render(width: number): string[] {
-					const { input, output, cost } = tokenStats(ctx);
-					const branch = footerData.getGitBranch();
+				// ctx.sessionManager.getBranch() : session entries — usage tokens
+				// via getEntries() (session entries incl. usage), model via ctx.model.
+				const { input, output, cost } = tokenStats(ctx);
+				const branch = footerData.getGitBranch();
 					const left = theme.fg("dim", `↑${fmtTokens(input)} ↓${fmtTokens(output)} $${cost.toFixed(3)}`);
 					const right = theme.fg("dim", `${ctx.model?.id || "no-model"}${branch ? ` ⎇ ${branch}` : ""}`);
 					const pad = " ".repeat(Math.max(1, width - visibleWidth(left) - visibleWidth(right)));
@@ -65,6 +69,13 @@ export default function (pi: ExtensionAPI) {
 		ctx.ui.setStatus("widgets", ctx.ui.theme.fg("dim", "✨ ready"));
 		ctx.ui.setWidget("widgets-info", [infoLine(ctx)]);
 		if (footerEnabled) installFooter(ctx);
+	});
+
+	// session_shutdown : libérer le footer custom pour ne pas laisser un
+	// composant attaché à une session terminée (le nouveau footer built-in
+	// est réinstallé automatiquement au prochain session_start si besoin).
+	pi.on("session_shutdown", async () => {
+		footerInstalled = false;
 	});
 
 	pi.on("turn_start", async (_event, ctx) => {
