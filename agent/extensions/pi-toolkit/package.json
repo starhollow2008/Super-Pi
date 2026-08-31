@@ -1,0 +1,13 @@
+{
+	"name": "pi-toolkit",
+	"private": true,
+	"version": "0.2.0",
+	"type": "module",
+	"pi": {
+		"extensions": [
+			"./todo.ts",
+			"./widgets.ts",
+			"./speech.ts"
+		]
+	}
+}
