@@ -516,13 +516,14 @@ export default function (pi: ExtensionAPI) {
 				return;
 			}
 
-			const match = trimmed.match(/^(\d+)\s+(.+)$/);
-			if (!match) {
-				ctx.ui.notify('Usage: /task <number> <status> | /task add <text> | /task rm <number> | /task clear', "error");
-				return;
-			}
+		const match = trimmed.match(/^(\d+)\s+(.+)$/);
+		if (!match) {
+			ctx.ui.notify('Usage: /task <number> <status> | /task add <text> | /task rm <number> | /task clear', "error");
+			return;
+		}
 
-			const index = Number.parseInt(match[1] as string, 10) - 1;
+		// Allow "move 2 5"-style reorder? Kept out — /edit covers reordering.
+		const index = Number.parseInt(match[1] as string, 10) - 1;
 			const statusWord = (match[2] as string).trim();
 			const status = normalizeStatus(statusWord);
 			if (!status) {

@@ -1156,12 +1156,13 @@ export default function (pi: ExtensionAPI) {
 
   // Deliver a finalized utterance per the insert-mode setting.
   const deliverFinal = (text: string) => {
-    if (widgetCtx) {
-      if (settings.insertMode === "send") {
-        pi.sendUserMessage(text);
-      } else {
-        widgetCtx.ui.pasteToEditor(text);
-      }
+    if (!widgetCtx) return;
+    if (settings.insertMode === "send") {
+      // triggerTurn: false — deliver text without forcing an agent turn, so
+      // multiple finals can accumulate in the editor between pauses.
+      pi.sendUserMessage(text, { triggerTurn: false });
+    } else {
+      widgetCtx.ui.pasteToEditor(text);
     }
   };
 
@@ -1172,7 +1173,10 @@ export default function (pi: ExtensionAPI) {
   });
 
   pi.on("session_shutdown", async () => {
+    // Idempotent cleanup: cancel recording, kill transcriber, clear widget.
+    // Safe to run on every session switch/new/resume/exit.
     cancelRecording();
+    widgetCtx = null;
     widgetCtxRef = null;
   });
 
