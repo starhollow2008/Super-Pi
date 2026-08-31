@@ -1,0 +1,31 @@
+{
+  "executable": "/home/starhollow2008/.local/bin/crispasr",
+  "model": "tiny",
+  "language": "auto",
+  "gpuBackend": "auto",
+  "device": 0,
+  "insertMode": "paste",
+  "chunkMs": 1120,
+  "keybinds": {
+    "toggle": "ctrl+space",
+    "settings": "ctrl+alt+s",
+    "cycleModel": ">"
+  },
+  "models": {
+    "big": {
+      "label": "Big — Nemotron 3.5 ASR Streaming 0.6B Q4_K_M",
+      "backend": "nemotron",
+      "model": "/home/starhollow2008/.pi/agent/models/speech/nemotron-3.5-asr-streaming-0.6b-Q4_K_M.gguf"
+    },
+    "mid": {
+      "label": "Mid — Qwen3-ASR 0.6B Q4_K_S",
+      "backend": "qwen3",
+      "model": "/home/starhollow2008/.pi/agent/models/speech/Qwen3-ASR-0.6B.Q4_K_S.gguf"
+    },
+    "tiny": {
+      "label": "Tiny — SenseVoice Small Q8_0",
+      "backend": "sensevoice",
+      "model": "/home/starhollow2008/.pi/agent/models/speech/sensevoice-small-q8_0.gguf"
+    }
+  }
+}

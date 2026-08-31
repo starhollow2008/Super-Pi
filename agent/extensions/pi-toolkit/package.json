@@ -9,7 +9,6 @@
 			"./ask.ts",
 			"./changelog.ts",
 			"./smart-edit.ts",
-			"./resources.ts"
 		]
 	}
 }
