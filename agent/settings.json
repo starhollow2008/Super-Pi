@@ -1,14 +1,28 @@
 {
-  "lastChangelogVersion": "0.84.2",
+  "lastChangelogVersion": "0.84.4",
   "theme": "osu-pink",
   "enableInstallTelemetry": false,
-  "defaultProvider": "openrouter",
-  "defaultModel": "stealth/ox-alpha",
+  "defaultProvider": "llama.cpp",
+  "defaultModel": "Qwen3.6-35B-A3B-UD-IQ1_M",
   "defaultThinkingLevel": "medium",
   "packages": [
     "npm:pi-web-access"
   ],
   "hideThinkingBlock": false,
   "showCacheMissNotices": false,
-  "tuiMode": "regular"
+  "tuiMode": "regular",
+  "speech": {
+    "keybind": "shift+m",
+    "cancelKeybind": "ctrl+shift+x",
+    "modelTier": "tiny",
+    "language": "auto",
+    "crispasrPath": "crispasr",
+    "modelsDir": "/home/starhollow2008/.pi/agent/speech-models",
+    "insertMode": "editor",
+    "recorder": "auto",
+    "mic": "hw:1,0",
+    "sampleRate": 16000,
+    "finalizeOnPauseMs": 120,
+    "streamStepMs": 800
+  }
 }

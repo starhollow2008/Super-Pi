@@ -10,3 +10,9 @@ agent/sessions/
 agent/trust.json
 agent/npm/
 agent/*.log
+node_modules/
+agent/models/
+agent/speech-models/
+*.gguf
+agent/extensions/interactive-subagents/
+agent/extensions/observational-memory/
