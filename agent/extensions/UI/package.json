@@ -1,0 +1,12 @@
+{
+	"name": "pi-ui",
+	"private": true,
+	"version": "0.1.0",
+	"type": "module",
+	"pi": {
+		"extensions": [
+			"./ask-user-question.ts",
+			"./custom-header.ts"
+		]
+	}
+}
