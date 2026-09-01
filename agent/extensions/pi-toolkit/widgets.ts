@@ -12,6 +12,7 @@ import { truncateToWidth, visibleWidth } from "@earendil-works/pi-tui";
 
 export default function (pi: ExtensionAPI) {
 	let turnCount = 0;
+	let turnDone = 0;
 	let sessionStart = Date.now();
 	let footerEnabled = true;
 	let footerInstalled = false;
@@ -37,7 +38,8 @@ export default function (pi: ExtensionAPI) {
 
 	function infoLine(ctx: any) {
 		const mins = Math.floor((Date.now() - sessionStart) / 60000);
-		return ctx.ui.theme.fg("muted", `⏱ ${mins}min · turns: ${turnCount} · /footer toggles footer`);
+		const symbol = turnCount > 0 && turnDone >= turnCount ? "✓" : "●";
+		return ctx.ui.theme.fg("muted", `⏱ ${mins}min · ${symbol} ${turnDone}/${turnCount} tasks`);
 	}
 
 	function installFooter(ctx: any) {
@@ -64,6 +66,7 @@ export default function (pi: ExtensionAPI) {
 	pi.on("session_start", async (_event, ctx) => {
 		if (!ctx.hasUI) return;
 		turnCount = 0;
+		turnDone = 0;
 		sessionStart = Date.now();
 
 		ctx.ui.setStatus("widgets", ctx.ui.theme.fg("dim", "✨ ready"));
@@ -86,6 +89,7 @@ export default function (pi: ExtensionAPI) {
 
 	pi.on("turn_end", async (_event, ctx) => {
 		if (!ctx.hasUI) return;
+		turnDone++;
 		ctx.ui.setStatus("widgets", ctx.ui.theme.fg("success", `✓ turn ${turnCount}`));
 		ctx.ui.setWidget("widgets-info", [infoLine(ctx)]);
 	});
