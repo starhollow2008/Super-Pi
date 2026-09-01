@@ -16,3 +16,4 @@ agent/speech-models/
 *.gguf
 agent/extensions/interactive-subagents/
 agent/extensions/observational-memory/
+agent/memory/
