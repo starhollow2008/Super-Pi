@@ -17,3 +17,5 @@ agent/speech-models/
 agent/extensions/interactive-subagents/
 agent/extensions/observational-memory/
 agent/memory/
+
+agent/models-store.json
